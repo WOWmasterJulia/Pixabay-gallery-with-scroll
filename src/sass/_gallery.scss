@@ -41,6 +41,8 @@ body {
 }
 
 .gallery {
+    display: flex;
+    flex-wrap: wrap;
     // display: grid;
     // max-width: 1140px;
     // grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -116,4 +118,7 @@ body {
 .info {
     display: flex;
     grid-gap: 10px;
+}
+.is-hidden {
+    display: none;
 }
