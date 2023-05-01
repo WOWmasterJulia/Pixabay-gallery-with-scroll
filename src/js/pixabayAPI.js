@@ -5,7 +5,7 @@ export class PixabayAPI {
     #API_KEY = '35792942-c738c06de8752e63923c1b94a';
     #query = '';
 
-    getPhotoByQuery(page) {
+    getPhotoByQuery(pg, pP) {
         // console.log(this.#BASE_URL);
         return axios.get(this.#BASE_URL,{
             params: {
@@ -14,8 +14,8 @@ export class PixabayAPI {
                 image_type: 'photo',
                 orientation: 'horizontal',
                 safesearch: 'true',
-                page: page,
-                per_page: 40,
+                page: pg,
+                per_page: pP,
         }})
     }
 
