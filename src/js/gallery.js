@@ -12,7 +12,7 @@ const searchFormEl = document.querySelector('.search-form');
 const btnEl = document.querySelector('.load-more');
 searchFormEl.addEventListener('submit', onSearchForm);
 
-const perPage = 90;
+const perPage = 40;
 let totalPage = 0;
 let page = 1;
 let gallery = new SimpleLightbox('.gallery a', {
@@ -64,7 +64,7 @@ async function loadMore() {
     gallery.refresh();
         console.log(page, totalPage);
     } else {
-        Notiflix.Notify.failure("Oops....");
+        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
         btnEl.classList.add('is-hidden');
         return;
     }

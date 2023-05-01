@@ -15,7 +15,7 @@ export class PixabayAPI {
                 orientation: 'horizontal',
                 safesearch: 'true',
                 page: page,
-                per_page: 90,
+                per_page: 40,
         }})
     }
 
