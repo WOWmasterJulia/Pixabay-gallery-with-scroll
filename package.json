@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://WOWmasterJulia.github.io/GOIT-JS-hw-11-Pixabay-gallery",
+  "homepage": "https://WOWmasterJulia.github.io/Pixabay-gallery-with-scroll",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /GOIT-JS-hw-11-Pixabay-gallery/"
+    "build": "parcel build src/*.html --public-url /Pixabay-gallery-with-scroll/"
   },
   "repository": {
     "type": "git",
