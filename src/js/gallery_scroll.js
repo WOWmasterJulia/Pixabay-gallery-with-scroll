@@ -1,7 +1,8 @@
 import createGalleryCards from "../tamplates/gallery-card.hbs";
 import { PixabayAPI } from "./pixabayAPI";
 
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
@@ -31,7 +32,8 @@ async function onSearchForm(event) {
     pixabayAPI.query = searchQuery;
     if (!searchQuery) {
         galleryEl.innerHTML = '';
-        return Notiflix.Notify.warning('Empty request!!!', 'fill in the request field!')
+        // return Notiflix.Notify.warning('Empty request!!!', 'fill in the request field!')
+        return Report.warning('Empty request!!!', 'fill in the request field!')
     }
     galleryEl.innerHTML = '';
     page = 1;
@@ -39,9 +41,9 @@ async function onSearchForm(event) {
         const respons = await pixabayAPI.getPhotoByQuery(page,perPage);
         console.log(respons);
         if (respons.data.hits.length === 0) {
-            Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.");
+            Report.info("Sorry, there are no images matching your search query. Please try again.");
         } else {
-            Notiflix.Notify.info(`Hooray! We found ${respons.data.totalHits} images.`);
+            Report.success(`Hooray! We found ${respons.data.totalHits} images.`);
         };
         if (respons.data.hits.length < perPage) {
             return galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
@@ -64,7 +66,7 @@ async function loadMore() {
         gallery.refresh();
         console.log(page, totalPage);
         if (page === totalPage) {
-            Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+            Report.failure("We're sorry, but you've reached the end of search results.");
             btnEl.classList.add('is-hidden');
             return;
         }
