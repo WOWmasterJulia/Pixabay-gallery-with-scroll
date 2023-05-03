@@ -103,10 +103,10 @@ body {
     display: flex;
     margin-bottom: 30px;
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     justify-content: center;
-    background-color: aquamarine;
-    height: 80px;
+    background-color: rgb(255, 127, 174);
+    height: 90px;
     grid-gap: 12px;
 }
 
@@ -119,4 +119,14 @@ body {
 
 .is-hidden {
     display: none;
+}
+.search {
+    background-color: aqua;
+    border: none;
+    border-radius: 5px;
+}
+.input {
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
 }
