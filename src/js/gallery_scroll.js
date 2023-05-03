@@ -10,7 +10,7 @@ const galleryEl = document.querySelector('.gallery');
 const pixabayAPI = new PixabayAPI();
 
 const searchFormEl = document.querySelector('.search-form');
-const btnEl = document.querySelector('.load-more');
+// const btnEl = document.querySelector('.load-more');
 searchFormEl.addEventListener('submit', onSearchForm);
 
 const perPage = 40;
@@ -20,15 +20,41 @@ let gallery = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,  
 });
+const optionsScroll = {
+    root: null,
+    rootMargin: '300px',
+    threshold: 1.0,
+}
+const callback = async function (entries, observer) {
+    console.log(entries[0].isIntersecting);
+    try {
+        if (entries[0].isIntersecting) {
+                page += 1;
+                observer.disconnect();
+                const respons = await pixabayAPI.getPhotoByQuery(page);
+                galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits));
+                observer.observe(galleryEl.lastElementChild);
+                console.log(page, totalPage);
+                if (page === totalPage) {
+                    Report.failure("We're sorry, but you've reached the end of search results.");
+                    // btnEl.classList.add('is-hidden');
+                    observer.disconnect();
+                    return;
+                }
+        }
+      } catch (error) {
+    console.log(error.message);
+  }      
+};
 
-
+const observer = new IntersectionObserver(callback, optionsScroll);
 /* Пошук по запиту */
-
+// console.log(observer);
 async function onSearchForm(event) {
     event.preventDefault();
     const searchQuery = event.currentTarget.elements["searchQuery"].value.trim();
     console.dir(searchQuery);
-    btnEl.classList.add('is-hidden');
+    // btnEl.classList.add('is-hidden');
     pixabayAPI.query = searchQuery;
     if (!searchQuery) {
         galleryEl.innerHTML = '';
@@ -39,7 +65,7 @@ async function onSearchForm(event) {
     page = 1;
     try {   
         const respons = await pixabayAPI.getPhotoByQuery(page,perPage);
-        console.log(respons);
+        // console.log(respons);
         if (respons.data.hits.length === 0) {
             Report.info("Sorry, there are no images matching your search query. Please try again.");
         } else {
@@ -49,25 +75,28 @@ async function onSearchForm(event) {
             return galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
         } 
         totalPage = Math.ceil(respons.data.totalHits / perPage);
-        console.log(totalPage);
+        // console.log(totalPage);
         galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
+        // console.log(galleryEl.lastElementChild);
+        observer.observe(galleryEl.lastElementChild);
         gallery.refresh();
-        btnEl.classList.remove('is-hidden');
+        // btnEl.classList.remove('is-hidden');
     } catch(error) {
         console.log(error)
     }
 }
 
-btnEl.addEventListener('click', loadMore);
-async function loadMore() {
-    page += 1;
-        const respons = await pixabayAPI.getPhotoByQuery(page);
-        galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits));
-        gallery.refresh();
-        console.log(page, totalPage);
-        if (page === totalPage) {
-            Report.failure("We're sorry, but you've reached the end of search results.");
-            btnEl.classList.add('is-hidden');
-            return;
-        }
-};
+// btnEl.addEventListener('click', loadMore);
+// async function loadMore() {
+//     page += 1;
+//         const respons = await pixabayAPI.getPhotoByQuery(page);
+//         galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits));
+//         gallery.refresh();
+//         console.log(page, totalPage);
+//         if (page === totalPage) {
+//             Report.failure("We're sorry, but you've reached the end of search results.");
+//             btnEl.classList.add('is-hidden');
+//             return;
+//         }
+// };
+
