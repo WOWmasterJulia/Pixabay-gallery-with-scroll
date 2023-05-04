@@ -38,10 +38,9 @@ const callback = async function (entries, obs) {
                 ttlPic = ttlPic + respons.data.hits.length;
                 obs.observe(galleryEl.lastElementChild);
                 console.log(page, totalPage, ttlPic);
+                gallery.refresh();
             }   else {
-            // if (page === totalPage) {
-                Report.failure("We're sorry, but you've reached the end of search results.");
-                // btnEl.classList.add('is-hidden');
+                Report.failure("We're sorry, but you've reached the end of search results.");                
                 obs.disconnect();
                 return;
             }
@@ -58,7 +57,7 @@ async function onSearchForm(event) {
     event.preventDefault();
     const searchQuery = event.currentTarget.elements["searchQuery"].value.trim();
     console.dir(searchQuery);
-    // btnEl.classList.add('is-hidden');
+    
     pixabayAPI.query = searchQuery;
     if (!searchQuery) {
         galleryEl.innerHTML = '';
@@ -74,35 +73,26 @@ async function onSearchForm(event) {
         console.log(ttlPic);
         if (respons.data.hits.length === 0) {
             Report.info("Sorry, there are no images matching your search query. Please try again.");
+            return
         } else {
             Report.success(`Hooray! We found ${respons.data.totalHits} images.`);
         };
-        if (respons.data.hits.length < perPage) {
-            return galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
-        } 
+        // if (respons.data.hits.length < perPage) {
+        //     galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
+        //     gallery.refresh();
+        //     return 
+        // } 
         totalPage = Math.ceil(respons.data.totalHits / perPage);
-        // console.log(totalPage);
+        console.log(totalPage);
         galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
         // console.log(galleryEl.lastElementChild);
         observer.observe(galleryEl.lastElementChild);
         gallery.refresh();
-        // btnEl.classList.remove('is-hidden');
+        
     } catch(error) {
         console.log(error)
     }
 }
 
-// btnEl.addEventListener('click', loadMore);
-// async function loadMore() {
-//     page += 1;
-//         const respons = await pixabayAPI.getPhotoByQuery(page);
-//         galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits));
-//         gallery.refresh();
-//         console.log(page, totalPage);
-//         if (page === totalPage) {
-//             Report.failure("We're sorry, but you've reached the end of search results.");
-//             btnEl.classList.add('is-hidden');
-//             return;
-//         }
-// };
+
 
