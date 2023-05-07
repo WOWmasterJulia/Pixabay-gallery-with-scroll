@@ -30,6 +30,7 @@ body {
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
         0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     transform: scale(.99);
+    border-radius: 2px;
     overflow: hidden;
 }
 .photo-card:hover {
@@ -90,22 +91,24 @@ b {
 .search {
     background-color: rgba(238, 244, 244, 0.684);
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     font-weight: 500;
     font-size: 16px;
-    align-items: center;
     text-align: center;
     letter-spacing: 0.04em;
     display: block;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 10px 20px;
+    transform: scale(.98);
+    
 }
 
 .search:hover {
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
     background-color: rgba(0, 255, 255, 0.684);
     color: rgb(255, 255, 255);
+    transition: transform var(--animation-duration), var(--timing-function), transform var(--transision-scale);
+    transform: scale(1.02);
 }
 
 .search:focus {
@@ -115,6 +118,12 @@ b {
 
 .input {
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
     padding-left: 10px;
+    transform: scale(.99);
+}
+.input:hover {
+    transition: transform var(--animation-duration) var(--timing-function);
+    transform: scale(1.01);
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
