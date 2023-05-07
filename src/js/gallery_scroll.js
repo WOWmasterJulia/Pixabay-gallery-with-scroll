@@ -1,7 +1,5 @@
 import createGalleryCards from "../tamplates/gallery-card.hbs";
 import { PixabayAPI } from "./pixabayAPI";
-
-// import Notiflix from 'notiflix';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -10,7 +8,6 @@ const galleryEl = document.querySelector('.gallery');
 const pixabayAPI = new PixabayAPI();
 
 const searchFormEl = document.querySelector('.search-form');
-// const btnEl = document.querySelector('.load-more');
 searchFormEl.addEventListener('submit', onSearchForm);
 let ttlPic = 0;
 const perPage = 40;
@@ -56,12 +53,11 @@ const observer = new IntersectionObserver(callback, optionsScroll);
 async function onSearchForm(event) {
     event.preventDefault();
     const searchQuery = event.currentTarget.elements["searchQuery"].value.trim();
-    console.dir(searchQuery);
+    // console.dir(searchQuery);
     
     pixabayAPI.query = searchQuery;
     if (!searchQuery) {
         galleryEl.innerHTML = '';
-        // return Notiflix.Notify.warning('Empty request!!!', 'fill in the request field!')
         return Report.warning('Empty request!!!', 'fill in the request field!')
     }
     galleryEl.innerHTML = '';
@@ -77,11 +73,6 @@ async function onSearchForm(event) {
         } else {
             Report.success(`Hooray! We found ${respons.data.totalHits} images.`);
         };
-        // if (respons.data.hits.length < perPage) {
-        //     galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
-        //     gallery.refresh();
-        //     return 
-        // } 
         totalPage = Math.ceil(respons.data.totalHits / perPage);
         console.log(totalPage);
         galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
