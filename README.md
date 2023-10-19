@@ -1,14 +1,14 @@
 # PIXABAY GALLERY with scroll | Javascript
 
-![Pixabay with scroll](.src/images/Pixabay_scroll_1.jpg)
-![Pixabay with scroll](./images/Pixabay_scroll_2.jpg)
+![Pixabay with scroll](./assets/Pixabay_scroll_1.jpg)
+![Pixabay with scroll](./assets/Pixabay_scroll_2.jpg)
 
 ## Технічний стек / Technical stack
 
-![JS](https://img.shields.io/badge/Javascript-%23F7DF1E.svg?style=for-the-badge&logo=react&logoColor=white)
+![JS](https://img.shields.io/badge/Javascript-%23F7DF1E)
 ![Notiflix](https://img.shields.io/badge/notiflix-%23E50914
 )
-![Axios](https://img.shields.io/badge/Axios-%23000000.svg?style=for-the-badge&logo=axios&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-%23000000)
 ![Pixabay](https://img.shields.io/badge/pixabay-%23%232EC66D
 )
 
