@@ -1,3 +1,21 @@
+# PIXABAY GALLERY with scroll | Javascript
+
+![Pixabay with scroll](./images/Pixabay_scroll_1.jpg)
+![Pixabay with scroll](./images/Pixabay_scroll_2.jpg)
+
+## Технічний стек / Technical stack
+
+![JS](https://img.shields.io/badge/Javascript-%23F7DF1E.svg?style=for-the-badge&logo=react&logoColor=white)
+![Notiflix](https://img.shields.io/badge/notiflix-%23E50914
+.svg?style=for-the-badge&logo=notiflix&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-%23000000.svg?style=for-the-badge&logo=axios&logoColor=white)
+![Pixabay](https://img.shields.io/badge/pixabay-%23%232EC66D
+.svg?style=for-the-badge&logo=pixabay-router&logoColor=white)
+
+
+
+
+
 # Parcel template
 
 Этот проект был создан при помощи Parcel. Для знакомства и настройки
