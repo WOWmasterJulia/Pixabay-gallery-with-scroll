@@ -49,11 +49,9 @@ const callback = async function (entries, obs) {
 const observer = new IntersectionObserver(callback, optionsScroll);
 
 /* Пошук по запиту */
-// console.log(observer);
 async function onSearchForm(event) {
     event.preventDefault();
     const searchQuery = event.currentTarget.elements["searchQuery"].value.trim();
-    // console.dir(searchQuery);
     
     pixabayAPI.query = searchQuery;
     if (!searchQuery) {
@@ -76,7 +74,6 @@ async function onSearchForm(event) {
         totalPage = Math.ceil(respons.data.totalHits / perPage);
         console.log(totalPage);
         galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(respons.data.hits)); 
-        // console.log(galleryEl.lastElementChild);
         observer.observe(galleryEl.lastElementChild);
         gallery.refresh();
         
